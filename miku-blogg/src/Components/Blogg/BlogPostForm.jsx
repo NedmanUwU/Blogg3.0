@@ -33,7 +33,7 @@ const BlogPostForm = ({ onAddPost }) => {
 
   return (
     <div className="blog-post-form">
-      <h2>Create a New Blog Post</h2>
+      <h2>Welcome Catblogger!</h2>
       <form onSubmit={handleSubmit}>
         <div className='text-input'>
           <label htmlFor="title">Title:</label>

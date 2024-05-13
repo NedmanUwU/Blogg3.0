@@ -35,8 +35,11 @@ const BlogWrapper = ({isLoggedIn}) => {
 
   return (
     <div className="BlogWrapper">
-      <h1>Welcome to the Blog!</h1>
-      <BlogPostForm onAddPost={handleAddPost} />
+      {isLoggedIn ? (
+        <BlogPostForm onAddPost={handleAddPost} />
+      ) : (
+        <h2>Please log in to continue</h2>
+      )}
       <BlogPostList posts={posts} />
     </div>
   );
