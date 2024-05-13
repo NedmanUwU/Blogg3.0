@@ -1,0 +1,85 @@
+
+.PostWrapper {
+    background: rgb(100, 206, 255);
+    display: inline-block;
+    padding: 2rem;
+    border-radius: 5px;
+  }
+
+  .BlogPost{
+    border: solid 1px black;
+  }
+
+  .PostForm {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+        .Post-Input {
+          display: flex;
+          align-items: center;
+          outline: none;
+          background: white;
+          border: 3px solid #f7f5de;
+          border-radius: 5px;
+          margin-top: 1rem;
+          margin-bottom: 2rem;
+          color: black;
+        }
+        
+        .Post-Input img{
+          padding-left: 10px;
+          filter: invert(98%) sepia(4%) saturate(1091%) hue-rotate(342deg) brightness(103%) contrast(94%);
+        
+        }
+        
+        .Input-field {
+          flex: 1;
+          margin: 5px;
+          background: none;
+          border: none;
+          color: black;
+        }
+        
+        .Input-field::placeholder {
+          color: black;
+        }
+        
+        .Input-field:focus {
+          outline: none;
+        }
+  
+  .Post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f5de;
+    color: #6a4a3f;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+      .Post-header{
+        display: flex;
+        flex-direction: row;
+        margin-right: 0px;
+      }
+
+            .ToDo img{
+              margin: 0;
+              padding: 0;
+              margin-left: 0.5rem;
+            }
+          
+            .ToDo .ToDo-Icons {
+              display: flex;
+              align-items: center;
+            }
+          
+      .ToDo p{
+        color: #6a4a3f;
+        margin: 0;
+        margin-left: 15px;
+      }

@@ -4,7 +4,7 @@ const BlogPost = ({ post }) => {
   return (
     <div className="blog-post">
       <div className="user-info">
-        <img src={post.user.profilePicture} alt="Profile" />
+        <img src={post.user.profilePicture} alt="ProfilePicture" />
         <p>{post.user.username}</p>
       </div>
       <div className="post-content">

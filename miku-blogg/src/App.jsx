@@ -1,13 +1,25 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from './Components/Header/Header';
+import Landingpage from './Pages/LandingPage';
+import './App.css'; // Import your main CSS file
 
-function App() {
-
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const toggleLogin = () => {
+      setIsLoggedIn(!isLoggedIn);
+  };
+  
   return (
-    <>
-      <h1>Vite + React</h1>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Header isLoggedIn={isLoggedIn} onLogin={toggleLogin}/>
 
-export default App
+      <Routes>
+        <Route path= '/' element ={<Landingpage isLoggedIn={isLoggedIn}/>} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;

@@ -1,0 +1,97 @@
+.BlogWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.blog-list {
+  margin-top: 20px;
+}
+
+.blog-post {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.blog-post h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.blog-post p {
+  line-height: 1.6;
+}
+
+.blog-post .user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.blog-post .user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.blog-post-form {
+  width: 100%;
+  margin-bottom: 1rem;
+  background: rgb(100, 206, 255);
+  color: white;
+  display: inline-block;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.blog-post-form h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.blog-post-form label {
+  font-weight: bold;
+}
+
+.text-input{
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+  margin-left: 0px;
+}
+
+.blog-post-form input,
+.blog-post-form textarea {
+  margin: 5px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  outline: none;
+  background: white;
+  border: none;
+  border-radius: 5px;
+  color: black;
+}
+
+.blog-post-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.blog-post-form button:hover {
+  background-color: #0056b3;
+}

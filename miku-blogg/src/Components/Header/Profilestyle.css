@@ -1,0 +1,29 @@
+.Header-profile{
+    align-content: center;
+    position: relative;
+    background-color: rgb(191, 245, 255);
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px rgba(49, 77, 41, 0.151);
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    max-height: 42px;
+   }
+
+   .Header-profile:hover .login-button{
+    display: block;
+   }
+
+   .login-button{
+    display: none;
+    margin-right: 15px;
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+   }
+
+   .profile-icon{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
