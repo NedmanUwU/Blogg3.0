@@ -2,11 +2,11 @@ import React from 'react';
 import './BlogStyle.css';
 import BlogPost from './BlogPost';
 
-const BlogPostList = ({ posts }) => {
+const BlogPostList = ({ isLoggedIn, posts }) => {
   return (
     <div className="blog-list">
       {posts.map((post) => (
-        <BlogPost key={post.id} post={post} />
+        <BlogPost isLoggedIn={isLoggedIn} key={post.id} post={post} />
       ))}
     </div>
   );

@@ -1,4 +1,6 @@
 .BlogWrapper {
+  display: flex;
+  flex-direction: column;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -16,14 +18,22 @@ h1 {
 
 .blog-post {
   border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
   background-color: #f9f9f9;
 }
 
+.blog-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .blog-post h2 {
   font-size: 1.5em;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .blog-post p {
@@ -44,7 +54,6 @@ h1 {
 }
 
 .blog-post-form {
-  width: 100%;
   margin-bottom: 1rem;
   background: rgb(100, 206, 255);
   color: white;
