@@ -62,7 +62,7 @@ const EditBlogPostForm = ({ editPost }) => {
   );
 };
 
-BlogPostForm.propTypes = {
+EditBlogPostForm.propTypes = {
   onAddPost: PropTypes.func.isRequired,
 };
 
