@@ -1,9 +1,10 @@
 import React from 'react';
+import MainContent from '../Components/About/MainContent';
 
 const AboutPage = ({isLoggedIn}) => {
   return (
     <>
-    <div>Aboutpage</div>
+    <MainContent />
     </>
   )
 }

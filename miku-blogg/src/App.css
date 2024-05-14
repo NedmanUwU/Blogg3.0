@@ -1,3 +1,32 @@
 *{
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.Wrapper{
+  background: #66b888;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+  padding: 2rem;
+  border-radius: 5px;
+  color: #6a4a3f;
+  padding: 8px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.Wrapper h2{
+  color: #f7f5de;
+  margin: 0;
+  padding: 0;
+}
+
+.Wrapper p{
+  text-align: left;
+  color: #6a4a3f;
+  width: 500px;
+  padding: 20px;
+  margin: 25px;
+  margin-top: 5px;
+  border-radius: 8px;
+  background-color:#f7f5de;
+}

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ProfilePicture from '../../assets/cat1.jpg';
 
 const EditBlogPostForm = ({ editPost }) => {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState(post.title);
+  const [body, setBody] = useState(post.body);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -26,7 +26,7 @@ const EditBlogPostForm = ({ editPost }) => {
       },
     };
 
-    editPost(value, article);
+    editPost(value, article.id);
     setTitle('');
     setBody('');
   };
@@ -43,7 +43,7 @@ const EditBlogPostForm = ({ editPost }) => {
             id="title"
             value={title}
             placeholder='Update your title...'
-            onChange={handleTitleChange}
+            onChange={(handleTitleChange) => setTitle(e.target.title)}
             required
         /></div>
         <div className='text-input'>
@@ -52,7 +52,7 @@ const EditBlogPostForm = ({ editPost }) => {
           id="body"
           value={body}
           placeholder='Update your thoughts...'
-          onChange={handleBodyChange}
+          onChange={(handleBodyChange) => setBody(e.target.body)}
           required 
           ></textarea>
         </div>

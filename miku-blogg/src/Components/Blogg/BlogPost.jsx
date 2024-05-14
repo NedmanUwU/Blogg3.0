@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const BlogPost = ({ post, isLoggedIn }) => {
+const BlogPost = ({ post, isLoggedIn, deletePost, editPost,}) => {
   return (
     <div className="blog-post">
       <div className="blog-header">
