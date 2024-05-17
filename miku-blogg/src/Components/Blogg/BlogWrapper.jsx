@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './BlogStyle.css';
 import BlogPostList from './BlogPostList';
 import BlogPostForm from './BlogPostForm';
-import Mikupfp from '../../assets/Mikupfp.jpg'
-import Cinnamorollpfp from '../../assets/cinnamorollpfp.jpg'
+import Mikupfp from '../../assets/Mikupfp.jpg';
+import Cinnamorollpfp from '../../assets/cinnamorollpfp.jpg';
 
-const BlogWrapper = ({isLoggedIn}) => {
+const BlogWrapper = ({ isLoggedIn }) => {
   const [posts, setPosts] = useState([
     // Existing sample posts
     {
@@ -28,22 +28,28 @@ const BlogWrapper = ({isLoggedIn}) => {
     },
   ]);
 
-  const deletePost = id =>{
-    setPosts(posts.filter(post => post.id !== id))
-  }
+  const deletePost = (id) => {
+    setPosts(posts.filter((post) => post.id !== id));
+  };
 
-  const editPost = id =>{
-    setPosts(posts.map(post => post.id === id ? 
-                      {...post, isEditing: !post.isEditing} : post))
-  }
+  const editPost = (id) => {
+    setPosts(
+      posts.map((post) =>
+        post.id === id ? { ...post, isEditing: !post.isEditing } : post
+      )
+    );
+  };
 
-  const editArticle = (article, id) => {
-    setPosts(posts.map(post => post.id ==id ? {... post, article, isEditing: !post.isEditing} : post))
-  }
+  const updatePost = (updatedPost) => {
+    setPosts(
+      posts.map((post) =>
+        post.id === updatedPost.id ? { ...updatedPost, isEditing: false } : post
+      )
+    );
+  };
 
   const handleAddPost = (newPost) => {
-    // Append new post to the posts state
-    setPosts([newPost, ...posts,]);
+    setPosts([newPost, ...posts]);
   };
 
   return (
@@ -53,7 +59,13 @@ const BlogWrapper = ({isLoggedIn}) => {
       ) : (
         <h2>Please log in to write your own posts</h2>
       )}
-      <BlogPostList posts={posts} isLoggedIn={isLoggedIn}/>
+      <BlogPostList
+        posts={posts}
+        isLoggedIn={isLoggedIn}
+        onDeletePost={deletePost}
+        onEditPost={editPost}
+        onUpdatePost={updatePost}
+      />
     </div>
   );
 };

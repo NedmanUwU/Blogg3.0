@@ -2,29 +2,28 @@ import React from 'react';
 import './BlogStyle.css';
 import BlogPost from './BlogPost';
 import EditBlogPostForm from './EditBlogPostForm';
+import CommentWrapper from './PostComment/CommentWrapper';
 
-const BlogPostList = ({ isLoggedIn, posts }) => {
-
-  const deletePost = id =>{
-    setPosts(posts.filter(post => post.id !== id))
-  }
-
-  const editPost = id =>{
-    setPosts(posts.map(post => post.id === id ? 
-                      {...post, isEditing: !post.isEditing} : post))
-  }
-
-  const editArticle = (article, id) => {
-    setPosts(posts.map(post => post.id ==id ? {... post, article, isEditing: !post.isEditing} : post))
-  }
-
-
+const BlogPostList = ({ isLoggedIn, posts, onDeletePost, onEditPost, onUpdatePost }) => {
   return (
     <div className="blog-list">
       {posts.map((post) => (
-        post.isEditing ? (<EditBlogPostForm editPost={editArticle} article={post}/>) : (
-        <BlogPost isLoggedIn={isLoggedIn} key={post.id} post={post}           deletePost={deletePost}
-        editPost={editPost}/>)
+        post.isEditing ? (
+          <EditBlogPostForm
+            key={post.id}
+            post={post}
+            onUpdatePost={onUpdatePost}
+          />
+        ) : (
+          <BlogPost
+            key={post.id}
+            isLoggedIn={isLoggedIn}
+            post={post}
+            deletePost={onDeletePost}
+            editPost={onEditPost}>
+            <CommentWrapper />
+            </BlogPost>
+        )
       ))}
     </div>
   );
