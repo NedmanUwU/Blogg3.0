@@ -11,7 +11,7 @@ const BlogPost = ({ post, isLoggedIn, deletePost, editPost }) => {
           <p>{post.user.username}</p>
         </div>
         {isLoggedIn && post.user.username === 'CatBlogger' && (
-        <div className="Post-Icons">
+          <div className="Post-Icons">
             <FontAwesomeIcon
               className="edit-icon"
               icon={faPenToSquare}
@@ -26,7 +26,7 @@ const BlogPost = ({ post, isLoggedIn, deletePost, editPost }) => {
               style={{ width: '32px' }}
               onClick={() => deletePost(post.id)}
             />
-        </div>
+          </div>
         )}
       </div>
       <div className="post-content">
