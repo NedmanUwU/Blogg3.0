@@ -24,17 +24,6 @@ const CommentWrapper = ({ isLoggedIn }) => {
     const editKudos = (kudos, id) => {
       setComments(comments.map(comment => comment.id ==id ? {... comment, kudos, isEditing: !comment.isEditing} : comment))}
 
-    const user = (name, img) => {
-      if (!name && !img) {
-        return {
-          name: 'Miku',
-          img: 'D:/Dokument/GitHub/BLogg/mikublogg/src/Assets/cat2.jpg'
-        };
-      } else {
-        return { name, img };
-      }
-    };
-
   return (
     <div className='CommentWrapper'>
          {isLoggedIn &&

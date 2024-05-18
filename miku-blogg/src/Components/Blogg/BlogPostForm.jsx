@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProfilePicture from '../../assets/cat1.jpg';
+import Miku from '../../assets/Miku_Sit.png'
 
 const BlogPostForm = ({ onAddPost }) => {
   const [title, setTitle] = useState('');
@@ -33,7 +34,10 @@ const BlogPostForm = ({ onAddPost }) => {
 
   return (
     <div className="blog-post-form">
+      <div className='Welcome-message'>
       <h2>Welcome Catblogger!</h2>
+      <img src= {Miku} alt="" />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className='text-input'>
           <label htmlFor="title">Title:</label>

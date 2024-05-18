@@ -1,7 +1,7 @@
 .Header-profile{
     align-content: center;
     position: relative;
-    background-color: rgb(191, 245, 255);
+    background-color: #e3f2fd;
     border-radius: 30px;
     box-shadow: 5px 5px 5px rgba(49, 77, 41, 0.151);
     padding: 5px;
@@ -26,4 +26,15 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+  }
+
+  .Header-profile button{
+    background-color: #324863;  /* Pink */
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  .Header-profile button:hover{
+    background-color: #f48fb1;  /* Pink */
+    color: #ffffff; 
   }

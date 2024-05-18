@@ -19,7 +19,7 @@ const EditBlogPostForm = ({ post, onUpdatePost }) => {
   };
 
   return (
-    <div className="blog-post-form">
+    <div className="blog-post-form-edit">
       <h2>Edit your post</h2>
       <form onSubmit={handleSubmit}>
         <div className="text-input">
