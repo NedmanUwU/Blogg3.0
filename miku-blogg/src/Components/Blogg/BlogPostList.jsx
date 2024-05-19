@@ -21,8 +21,8 @@ const BlogPostList = ({ isLoggedIn, posts, onDeletePost, onEditPost, onUpdatePos
             post={post}
             deletePost={onDeletePost}
             editPost={onEditPost}>
-            <CommentWrapper />
-            </BlogPost>
+            <CommentWrapper isLoggedIn={isLoggedIn}/>
+          </BlogPost>
         )
       ))}
     </div>

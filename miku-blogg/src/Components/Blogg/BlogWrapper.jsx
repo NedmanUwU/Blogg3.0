@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './BlogStyle.css';
 import BlogPostList from './BlogPostList';
 import BlogPostForm from './BlogPostForm';
@@ -9,7 +10,7 @@ const BlogWrapper = ({ isLoggedIn }) => {
   const [posts, setPosts] = useState([
     // Existing sample posts
     {
-      id: 1,
+      id: uuidv4(),
       user: {
         username: 'Miku',
         profilePicture: Mikupfp,
@@ -18,7 +19,7 @@ const BlogWrapper = ({ isLoggedIn }) => {
       body: 'Hello everyone! I’m Hatsune Miku! Who? First things first, I’m not your typical pop star—I’m a Vocaloid! Developed by Crypton Future Media, I made my debut in 2007 as a virtual singing synthesizer. My voice is based on samples from Japanese voice actress Saki Fujita, and I sing using Yamaha’s Vocaloid technology. What makes me unique is that my character isn’t just about the music; I have a whole persona and story. Until next time, stay tuned for more music, more fun, and more virtual awesomeness. Thanks for being a part of my world! Yours virtually, Hatsune Miku',
     },
     {
-      id: 2,
+      id: uuidv4(),
       user: {
         username: 'Cinnamoroll',
         profilePicture: Cinnamorollpfp,
@@ -29,10 +30,12 @@ const BlogWrapper = ({ isLoggedIn }) => {
   ]);
 
   const deletePost = (id) => {
+    console.log('Deleting post with id:', id);
     setPosts(posts.filter((post) => post.id !== id));
   };
 
   const editPost = (id) => {
+    console.log('Editing post with id:', id);
     setPosts(
       posts.map((post) =>
         post.id === id ? { ...post, isEditing: !post.isEditing } : post
@@ -41,6 +44,7 @@ const BlogWrapper = ({ isLoggedIn }) => {
   };
 
   const updatePost = (updatedPost) => {
+    console.log('Updating post:', updatedPost);
     setPosts(
       posts.map((post) =>
         post.id === updatedPost.id ? { ...updatedPost, isEditing: false } : post
@@ -49,6 +53,9 @@ const BlogWrapper = ({ isLoggedIn }) => {
   };
 
   const handleAddPost = (newPost) => {
+    console.log('Adding new post:', newPost);
+    newPost.id = uuidv4(); // Generate a unique ID for the new post
+    newPost.isEditing = false; // Ensure the new post is not in editing mode
     setPosts([newPost, ...posts]);
   };
 

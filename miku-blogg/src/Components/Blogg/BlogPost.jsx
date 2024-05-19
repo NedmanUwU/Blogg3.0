@@ -2,12 +2,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const BlogPost = ({ post, isLoggedIn, deletePost, editPost }) => {
+const BlogPost = ({ post, isLoggedIn, deletePost, editPost, children }) => {
   return (
     <div className="blog-post">
       <div className="blog-header">
         <div className="user-info">
-          <img src={post.user.profilePicture} alt="ProfilePicture" />
+          <img src={post.user.profilePicture} alt="Profile Picture" />
           <p>{post.user.username}</p>
         </div>
         {isLoggedIn && post.user.username === 'CatBlogger' && (
@@ -32,6 +32,9 @@ const BlogPost = ({ post, isLoggedIn, deletePost, editPost }) => {
       <div className="post-content">
         <h2>{post.title}</h2>
         <p>{post.body}</p>
+      </div>
+      <div className='Comment-section'>
+        {children}
       </div>
     </div>
   );
