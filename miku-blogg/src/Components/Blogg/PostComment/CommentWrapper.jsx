@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import EditCommentForm from './EditCommentForm';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
-import ProfilePic from '../../../assets/cat2.jpg';
-import './Comment.css';
 import { v4 as uuidv4 } from 'uuid';
+import './Comment.css';
 
-const CommentWrapper = ({ isLoggedIn }) => {
-  const [comments, setComments] = useState([]);
+const CommentWrapper = ({ post, isLoggedIn }) => {
+  const [comments, setComments] = useState(post.comments || []);
 
   const addComment = (comment) => {
-    setComments([...comments, { id: uuidv4(), kudos: comment, isEditing: false }]);
+    setComments([...comments, { id: uuidv4(), ...comment, isEditing: false }]);
   };
 
   const deleteComment = (id) => {
@@ -29,11 +28,6 @@ const CommentWrapper = ({ isLoggedIn }) => {
     ));
   };
 
-  const user = () => ({
-    name: "John Doe",
-    img: ProfilePic,
-  });
-
   return (
     <div className='CommentWrapper'>
       {isLoggedIn && (
@@ -43,15 +37,14 @@ const CommentWrapper = ({ isLoggedIn }) => {
       )}
       {comments.map((comment) =>
         comment.isEditing ? (
-          <EditCommentForm key={comment.id} editComment={editKudos} Kudos={comment} />
+          <EditCommentForm key={comment.id} editComment={editKudos} comments={comments} />
         ) : (
           <Comment
             key={comment.id}
-            kudos={comment}
+            comment={comment}
             deleteComment={deleteComment}
             editComment={editComment}
             isLoggedIn={isLoggedIn}
-            props={user()}
           />
         )
       )}

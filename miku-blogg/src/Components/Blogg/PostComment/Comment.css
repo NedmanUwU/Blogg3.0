@@ -1,15 +1,14 @@
 
 .CommentWrapper {
-    background: rgb(100, 206, 255);
-    display: inline-block;
+    margin-top: 25px;
     padding: 2rem;
-    border: solid 1px black;
+    background-color: #ffffff;
+    border: solid 1px #8ee2fc;
     border-radius: 5px;
   }
 
   .CommentForm {
     width: 100%;
-    margin-bottom: 1rem;
   }
 
         .Comment-Input {
@@ -17,10 +16,8 @@
           align-items: center;
           outline: none;
           background: white;
-          border: 3px solid #f7f5de;
+          border: 3px solid #324863;
           border-radius: 5px;
-          margin-top: 1rem;
-          margin-bottom: 2rem;
           color: black;
         }
         
@@ -45,42 +42,60 @@
         .Input-field:focus {
           outline: none;
         }
-  
-  .Comment {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background: #f7f5de;
-    color: #6a4a3f;
-    padding: 0.75rem 1rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-  }
-
+        
+.Comment{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+      
+.Comment:hover{
+  border: dashed 3px #8ee2fc;
+}
       .Comment-header{
         display: flex;
         flex-direction: row;
-        margin-right: 0px;
-      }
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+      }     
+            .Comment .User-info{
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+            }
+            .Comment-header p{
+              padding: 10px;
+              padding-left: 0px;
+              font-weight: bold;
+              color: #324863;  /* Dark Gray */
+            }
 
             .Comment img{
-              margin: 0;
-              padding: 0;
-              margin-left: 0.5rem;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              margin-right: 10px;
             }
           
             .Comment .Comment-Icons {
               display: flex;
               align-items: center;
+              cursor: pointer;
             }
-          
-      .Comment p{
-        color: #6a4a3f;
-        margin: 0;
-        margin-left: 15px;
+
+      .Comment-content p{
+        padding: 0px;
+        padding-left: 15px;
+        margin: 0px;
+        padding-bottom: 5px;
       }
+          
       .Comment-btn{
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
+        border-radius: 0px;
+        background-color: #324863;
+        font-weight: bold;
+      }
+
+      .Comment-btn:hover{
+        background-color: #f48fb1;
       }

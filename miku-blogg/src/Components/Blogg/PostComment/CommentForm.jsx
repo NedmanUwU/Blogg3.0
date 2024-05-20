@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import icon from '../../../assets/bars-icon.svg';
+import ProfilePicture from '../../../assets/cat1.jpg';
+import './Comment.css';
 
 const CommentForm = ({ addComment }) => {
-  const [value, setValue] = useState('');
+  const [text, setText] = useState('');
+
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(value);
-    setValue('');
+
+    const newComment = {
+      text,
+      user: {
+        username: 'CatBlogger',
+        profilePicture: ProfilePicture,
+      },
+    };
+
+    addComment(newComment);
+    setText('');
   };
 
   return (
@@ -16,9 +32,10 @@ const CommentForm = ({ addComment }) => {
         <img src={icon} className='Bar-Icon' alt='Icon' />
         <input
           className='Input-field'
-          value={value}
+          value={text}
           placeholder='Write your comment...'
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleTextChange}
+          required
         />
         <button type='submit' className='Comment-btn'>
           Submit!
@@ -26,6 +43,10 @@ const CommentForm = ({ addComment }) => {
       </div>
     </form>
   );
+};
+
+CommentForm.propTypes = {
+  addComment: PropTypes.func.isRequired,
 };
 
 export default CommentForm;
