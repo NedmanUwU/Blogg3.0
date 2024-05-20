@@ -59,7 +59,7 @@ body {
 }
 
 .edit-icon:hover, .delete-icon:hover {
-  color: #f48fb1; /* Light Blue */
+  color: #f48fb1;
 }
 
 .blog-post {
