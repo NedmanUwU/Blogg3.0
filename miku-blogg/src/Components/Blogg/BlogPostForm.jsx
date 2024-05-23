@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProfilePicture from '../../assets/cat1.jpg';
-import Miku from '../../assets/Miku_Sit.png'
+import Miku from '../../assets/Miku_Sit.png';
 
 const BlogPostForm = ({ onAddPost }) => {
+  // State for title and body inputs
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
+  // Event handler for title input change
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
+  // Event handler for body input change
   const handleBodyChange = (e) => {
     setBody(e.target.value);
   };
 
+  // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Create new blog post object
+    // Create new blog post object with the User's information
     const newPost = {
       title,
       body,
@@ -27,21 +31,24 @@ const BlogPostForm = ({ onAddPost }) => {
       },
     };
 
+    // Invoke onAddPost callback with new post data
     onAddPost(newPost);
+    // Clear title and body inputs after submission
     setTitle('');
     setBody('');
   };
 
   return (
     <div className="blog-post-form">
+      {/* Welcome message */}
       <div className='Welcome-message'>
-      <h2>Welcome Catblogger!</h2>
-      <img src= {Miku} alt="" />
+        <h2>Welcome Catblogger!</h2>
+        <img src={Miku} alt="Miku" />
       </div>
+      {/* Form for creating a new blog post, title and bodytext*/}
       <form onSubmit={handleSubmit}>
         <div className='text-input'>
           <label htmlFor="title">Title:</label>
-
           <input
             type="text"
             id="title"
@@ -49,15 +56,16 @@ const BlogPostForm = ({ onAddPost }) => {
             placeholder='Write a title...'
             onChange={handleTitleChange}
             required
-        /></div>
+          />
+        </div>
         <div className='text-input'>
           <label htmlFor="body">Text:</label>
           <textarea
-          id="body"
-          value={body}
-          placeholder='Write your thoughts...'
-          onChange={handleBodyChange}
-          required
+            id="body"
+            value={body}
+            placeholder='Write your thoughts...'
+            onChange={handleBodyChange}
+            required
           ></textarea>
         </div>
         <button type="submit">Post!</button>
@@ -66,6 +74,7 @@ const BlogPostForm = ({ onAddPost }) => {
   );
 };
 
+// Prop types validation
 BlogPostForm.propTypes = {
   onAddPost: PropTypes.func.isRequired,
 };

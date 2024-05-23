@@ -7,6 +7,7 @@ import Mikupfp from '../../assets/Mikupfp.jpg';
 import Cinnamorollpfp from '../../assets/cinnamorollpfp.jpg';
 
 const BlogWrapper = ({ isLoggedIn }) => {
+  // State for managing blog posts
   const [posts, setPosts] = useState([
     // Existing sample posts
     {
@@ -57,11 +58,12 @@ const BlogWrapper = ({ isLoggedIn }) => {
     
   ]);
 
+  // Function to delete a post
   const deletePost = (id) => {
     console.log('Deleting post with id:', id);
     setPosts(posts.filter((post) => post.id !== id));
   };
-
+// Function to toggle editing mode for a post
   const editPost = (id) => {
     console.log('Editing post with id:', id);
     setPosts(
@@ -70,7 +72,7 @@ const BlogWrapper = ({ isLoggedIn }) => {
       )
     );
   };
-
+// Function to update a post with new data, gathered from the editform
   const updatePost = (updatedPost) => {
     console.log('Updating post:', updatedPost);
     setPosts(
@@ -79,7 +81,7 @@ const BlogWrapper = ({ isLoggedIn }) => {
       )
     );
   };
-
+// Function to add a new post
   const handleAddPost = (newPost) => {
     console.log('Adding new post:', newPost);
     newPost.id = uuidv4(); // Generate a unique ID for the new post
@@ -89,11 +91,13 @@ const BlogWrapper = ({ isLoggedIn }) => {
 
   return (
     <div className="BlogWrapper">
+      {/* Render BlogPostForm if user is logged in, else display message */}
       {isLoggedIn ? (
         <BlogPostForm onAddPost={handleAddPost} />
       ) : (
         <h2>Please log in to write your own posts</h2>
       )}
+      {/* Render all existing posts, including newly created ones through the form */}
       <BlogPostList
         posts={posts}
         isLoggedIn={isLoggedIn}

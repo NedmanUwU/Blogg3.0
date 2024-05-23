@@ -4,7 +4,9 @@ import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Landingpage from './Pages/LandingPage';
 import AboutPage from './Pages/AboutPage';
-import './App.css'; // Import your main CSS file
+import ProfilePage from './Pages/ProfilePage';
+import './App.css';
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,6 +22,7 @@ const App = () => {
       <Routes>
         <Route path= '/' element ={<Landingpage isLoggedIn={isLoggedIn}/>} />
         <Route path= '/about' element ={<AboutPage isLoggedIn={isLoggedIn}/>} />
+        <Route path= '/profile' element ={<ProfilePage isLoggedIn={isLoggedIn}/>} />
       </Routes>
       <Footer />
     </BrowserRouter>

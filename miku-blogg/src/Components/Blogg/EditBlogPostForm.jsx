@@ -2,23 +2,29 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const EditBlogPostForm = ({ post, onUpdatePost }) => {
+  // State for title and body inputs, initialized with post data
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
 
+  // Event handler for title input change
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
+  // Event handler for body input change
   const handleBodyChange = (e) => {
     setBody(e.target.value);
   };
 
+  // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Update post object with new title and body
     onUpdatePost({ ...post, title, body });
   };
 
   return (
+    //Form for editing an existing blog post, based on 'BlogPostForm'
     <div className="blog-post-form-edit">
       <h2>Edit your post</h2>
       <form onSubmit={handleSubmit}>
@@ -49,6 +55,7 @@ const EditBlogPostForm = ({ post, onUpdatePost }) => {
   );
 };
 
+// Prop types validation
 EditBlogPostForm.propTypes = {
   post: PropTypes.object.isRequired,
   onUpdatePost: PropTypes.func.isRequired,

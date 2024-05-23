@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import IconLoggedOut from '../../assets/icon.png';
 import IconLoggedIn from '../../assets/cat1.jpg';
@@ -22,7 +23,7 @@ const Profile = ({isLoggedIn, onLogin}) => {
                 <button className="login-button" onClick={handleLoginClick}>Log in</button>
                 )}
           </div>
-            <img src={getDefaultProfilePicture()} alt="Profile" className='profile-icon'/>
+          <Link to="/profile" ><img src={getDefaultProfilePicture()} alt="Profile" className='profile-icon'/></Link>
       </div>
     );
   };

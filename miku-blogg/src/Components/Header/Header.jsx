@@ -10,9 +10,8 @@ const Header = ({isLoggedIn, onLogin}) => {
       <div className='header'>
         <img src={logo} alt="logo" className='Logo' />
         <div className='nav'>
-          <Link to="/" >Home</Link>
-          <Link to="/about" >About</Link>
-          
+          <Link to="/" className='nav-link'>Home</Link>
+          <Link to="/about" className='nav-link'>About</Link>      
           <Profile isLoggedIn={isLoggedIn} onLogin={onLogin} />
         </div>
       </div>
