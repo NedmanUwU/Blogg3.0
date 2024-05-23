@@ -11,9 +11,8 @@ const MainContent = () => {
           We're so happy to have you here! You are very welcome to blogg here
           right besides us. Let's share our experiences and get to know each other! 
           Whether it's about music, art, or everyday adventures, we can't wait to see what 
-          you'll share! 💙<br /><br />Why wait? Share your passions, connect with us and others, and 
-          let's make this space full of amazing stories and experiences together! To 
-          start all you need to do is create a profile, afterwards it's straight ahead 
+          you'll share! 💙<br /><br />Why wait? To start all you need to do is create a 
+          profile, afterwards it's straight ahead 
           blogging!
         </p>
       </div>
