@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './SignInForm.css';
+import './Form.css';
 
-const SignInForm = ({ onSignIn }) => {
+const SignUpForm = ({ onSignUp }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,7 +10,7 @@ const SignInForm = ({ onSignIn }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here, you can call the onSignIn function with the username, email, and password
-    onSignIn(username, email, password);
+    onSignUp(username, email, password);
     // Optionally, you can reset the form fields
     setUsername('');
     setEmail('');
@@ -18,8 +18,8 @@ const SignInForm = ({ onSignIn }) => {
   };
 
   return (
-    <div className="signin-form-container">
-      <h2>Sign In</h2>
+    <div className="form-container">
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="username">Username:</label>
@@ -51,14 +51,14 @@ const SignInForm = ({ onSignIn }) => {
             required
           />
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
 };
 
-SignInForm.propTypes = {
+SignUpForm.propTypes = {
   onSignIn: PropTypes.func.isRequired,
 };
 
-export default SignInForm;
+export default SignUpForm;

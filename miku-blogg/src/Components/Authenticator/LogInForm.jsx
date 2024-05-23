@@ -1,34 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import './Form.css';
 
-const [username, setUsername] = useState('');
+const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here, you can call the onSignIn function with the username, email, and password
-    onSignIn(username, email, password);
+    // Here, you can call the onLogin function with the email and password
+    onLogin(email, password);
     // Optionally, you can reset the form fields
-    setUsername('');
     setEmail('');
     setPassword('');
   };
 
-const SignInPage = () => {
   return (
-    <div className="signin-form-container">
-      <h2>Sign In</h2>
+    <div className="form-container">
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
         <div className="input-group">
           <label htmlFor="email">Email:</label>
           <input
@@ -49,16 +39,14 @@ const SignInPage = () => {
             required
           />
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 };
 
-SignInForm.propTypes = {
-  onSignIn: PropTypes.func.isRequired,
+LoginForm.propTypes = {
+  onLogin: PropTypes.func.isRequired,
 };
-  )
-}
 
-export default SignInPage
+export default LoginForm;
