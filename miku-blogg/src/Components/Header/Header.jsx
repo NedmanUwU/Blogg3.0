@@ -8,7 +8,7 @@ const Header = ({isLoggedIn, onLogin}) => {
   return (
     <header>
       <div className='header'>
-        <img src={logo} alt="logo" className='Logo'/>
+        <img src={logo} alt="logo" className='Logo' />
         <div className='nav'>
           <Link to="/" >Home</Link>
           <Link to="/about" >About</Link>
