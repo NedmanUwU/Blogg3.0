@@ -23,10 +23,14 @@ const Profile = ({isLoggedIn, onLogin}) => {
                 <button className="login-button" onClick={handleLoginClick}>Log in</button>
                 )}
           </div>
-          <Link to="/profile" ><img src={getDefaultProfilePicture()} alt="Profile" className='profile-icon'/></Link>
-      </div>
-    );
-  };
+          {isLoggedIn ? (
+        <Link to="/profile"><img src={getDefaultProfilePicture()} alt="Profile" className='profile-icon'/></Link>
+      ) : (
+        <Link to="/signin"><img src={getDefaultProfilePicture()} alt="Profile" className='profile-icon'/></Link>
+      )}
+    </div>
+  );
+};
 
 Profile.propTypes ={
   isLoggedIn: PropTypes.bool.isRequired,
