@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useAuth } from '../Authenticator/Authenticator';
 import './BlogStyle.css';
 import BlogPostList from './BlogPostList';
 import BlogPostForm from './BlogPostForm';
 import Mikupfp from '../../assets/Mikupfp.jpg';
 import Cinnamorollpfp from '../../assets/cinnamorollpfp.jpg';
 
-const BlogWrapper = ({ isLoggedIn }) => {
+const BlogWrapper = () => {
   // State for managing blog posts
+  const { currentUser } = useAuth();
   const [posts, setPosts] = useState([
     // Existing sample posts
     {
@@ -92,7 +94,7 @@ const BlogWrapper = ({ isLoggedIn }) => {
   return (
     <div className="BlogWrapper">
       {/* Render BlogPostForm if user is logged in, else display message */}
-      {isLoggedIn ? (
+      {currentUser ? (
         <BlogPostForm onAddPost={handleAddPost} />
       ) : (
         <h2>Please log in to write your own posts</h2>
@@ -100,7 +102,6 @@ const BlogWrapper = ({ isLoggedIn }) => {
       {/* Render all existing posts, including newly created ones through the form */}
       <BlogPostList
         posts={posts}
-        isLoggedIn={isLoggedIn}
         onDeletePost={deletePost}
         onEditPost={editPost}
         onUpdatePost={updatePost}

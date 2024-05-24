@@ -1,29 +1,21 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import PropTypes from 'prop-types';
+import { signInUser } from '../../firebase/authFunctions'; // Use the signInUser function from authService
 import './Form.css';
 
 const LoginForm = ({ onLogin }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const auth = getAuth();
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here, you can call the onLogin function with the email and password
-    onLogin(email, password);
-    // Optionally, you can reset the form fields
-    setEmail('');
-    setPassword('');
+    try {
+      const userCredential = await signInUser(email, password);
+      const user = userCredential.user;
+      onLogin(user); // Call the onLogin function with the logged-in user
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+    }
   };
 
   return (

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../Authenticator/Authenticator';
 
-const BlogPost = ({ post, isLoggedIn, deletePost, editPost, children }) => {
+const BlogPost = ({ post, deletePost, editPost, children }) => {
+  const { currentUser } = useAuth();
   // State to track whether full content is shown or not
   const [showFullContent, setShowFullContent] = useState(false);
 
@@ -24,7 +26,7 @@ const BlogPost = ({ post, isLoggedIn, deletePost, editPost, children }) => {
           <p>{post.user.username}</p>
         </div>
         {/* Render edit and delete icons if logged in user is the post owner */}
-        {isLoggedIn && post.user.username === 'CatBlogger' && (
+        {currentUser && post.user.username === currentUser.username && (
           <div className="Post-Icons">
             <FontAwesomeIcon
               className="edit-icon"

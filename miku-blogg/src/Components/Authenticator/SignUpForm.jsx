@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import PropTypes from 'prop-types';
+import { createUser } from '../../firebase/authFunctions';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import './Form.css';
 
 const SignUpForm = ({ onSignUp }) => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [profilePicture, setProfilePicture] = useState('cat1.jpg'); // Default profile picture
 
-  const auth = getAuth();
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here, you can call the onSignIn function with the username, email, and password
-    onSignUp(username, email, password);
-    // Optionally, you can reset the form fields
-    setUsername('');
-    setEmail('');
-    setPassword('');
+    try {
+      const userCredential = await createUser(email, password);
+      const user = userCredential.user;
+
+      // Save the username and profile picture to Firestore
+      const db = getFirestore();
+      await setDoc(doc(db, "users", user.uid), {
+        username,
+        email,
+        profilePicture // Save selected profile picture
+      });
+
+      onSignUp(user);
+    } catch (error) {
+      console.error('Error signing up:', error.message);
+    }
   };
 
   return (
@@ -62,6 +64,19 @@ createUserWithEmailAndPassword(auth, email, password)
             required
           />
         </div>
+        <div className="pfp-select">
+          <label htmlFor="profilePicture">Select profile picture:</label>
+          <select
+            id="profilePicture"
+            value={profilePicture}
+            onChange={(e) => setProfilePicture(e.target.value)}
+            required
+          >
+            <option value='../../assets/cat1.jpg'>Coder Cat</option>
+            <option value='../../assets/cat2.jpg'>Sleepy Cat</option>
+            <option value='../../assets/cat3.jpg'>Froggy Cat</option>
+          </select>
+        </div>
         <button type="submit">Sign Up</button>
       </form>
     </div>
@@ -69,7 +84,7 @@ createUserWithEmailAndPassword(auth, email, password)
 };
 
 SignUpForm.propTypes = {
-  onSignIn: PropTypes.func.isRequired,
+  onSignUp: PropTypes.func.isRequired,
 };
 
 export default SignUpForm;

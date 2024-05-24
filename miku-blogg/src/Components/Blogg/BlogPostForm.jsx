@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useAuth } from '../Authenticator/Authenticator';
 import PropTypes from 'prop-types';
-import ProfilePicture from '../../assets/cat1.jpg';
 import Miku from '../../assets/Miku_Sit.png';
 
 const BlogPostForm = ({ onAddPost }) => {
   // State for title and body inputs
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const { currentUser } = useAuth();
 
   // Event handler for title input change
   const handleTitleChange = (e) => {
@@ -26,8 +27,8 @@ const BlogPostForm = ({ onAddPost }) => {
       title,
       body,
       user: {
-        username: 'CatBlogger',
-        profilePicture: ProfilePicture,
+        username: currentUser.username,
+        profilePicture: currentUser.img,
       },
     };
 
@@ -40,9 +41,8 @@ const BlogPostForm = ({ onAddPost }) => {
 
   return (
     <div className="blog-post-form">
-      {/* Welcome message */}
       <div className='Welcome-message'>
-        <h2>Welcome Catblogger!</h2>
+        <h2>Welcome {currentUser.username}!</h2>
         <img src={Miku} alt="Miku" />
       </div>
       {/* Form for creating a new blog post, title and bodytext*/}

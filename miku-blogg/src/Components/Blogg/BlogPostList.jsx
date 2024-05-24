@@ -4,7 +4,7 @@ import BlogPost from './BlogPost';
 import EditBlogPostForm from './EditBlogPostForm';
 import CommentWrapper from './PostComment/CommentWrapper';
 
-const BlogPostList = ({ isLoggedIn, posts, onDeletePost, onEditPost, onUpdatePost }) => {
+const BlogPostList = ({ posts, onDeletePost, onEditPost, onUpdatePost }) => {
   return (
     <div className="blog-list">
       {/* Map through each post in the posts array */}
@@ -19,11 +19,10 @@ const BlogPostList = ({ isLoggedIn, posts, onDeletePost, onEditPost, onUpdatePos
         ) : (
           <BlogPost
             key={post.id}
-            isLoggedIn={isLoggedIn}
             post={post}
             deletePost={onDeletePost}
             editPost={onEditPost}>
-            <CommentWrapper post={post} isLoggedIn={isLoggedIn}/>
+            <CommentWrapper post={post} />
           </BlogPost>
         )
       ))}

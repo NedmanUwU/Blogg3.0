@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import Profile from './profile';
 
-const Header = ({isLoggedIn, onLogin}) => {
+const Header = () => {
   return (
     <header>
       <div className='header'>
@@ -12,7 +12,7 @@ const Header = ({isLoggedIn, onLogin}) => {
         <div className='nav'>
           <Link to="/" className='nav-link'>Home</Link>
           <Link to="/about" className='nav-link'>About</Link>      
-          <Profile isLoggedIn={isLoggedIn} onLogin={onLogin} />
+          <Profile />
         </div>
       </div>
     </header>

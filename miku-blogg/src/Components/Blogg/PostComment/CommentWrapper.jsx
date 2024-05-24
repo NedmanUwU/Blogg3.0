@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../Authenticator/Authenticator';
 import EditCommentForm from './EditCommentForm';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
 import { v4 as uuidv4 } from 'uuid';
 import './Comment.css';
 
-const CommentWrapper = ({ post, isLoggedIn }) => {
+const CommentWrapper = ({ post }) => {
   const [comments, setComments] = useState(post.comments || []);
+  const { currentUser } = useAuth();
 
   const addComment = (comment) => {
     setComments([...comments, { id: uuidv4(), ...comment, isEditing: false }]);
@@ -30,7 +32,7 @@ const CommentWrapper = ({ post, isLoggedIn }) => {
 
   return (
     <div className='CommentWrapper'>
-      {isLoggedIn && (
+      {currentUser && (
         <div className='addingNewComment'>
           <CommentForm addComment={addComment} />
         </div>

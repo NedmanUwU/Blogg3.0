@@ -22,8 +22,8 @@ const ProfilePage = ({ username, profilePicture, onUpdateProfile }) => {
   return (
     <div className="profile-page">
       <div className="profile-info">
-        <h2>Welcome, {username}!</h2>
-        <img src={profilePicture} alt="Profile Picture" />
+        <h2>Welcome, {currentUser.username}!</h2>
+        <img src={currentUser.profilePicture} alt="Profile Picture" />
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="newUsername">Choose a new username:</label>
