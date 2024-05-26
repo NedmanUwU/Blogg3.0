@@ -6,11 +6,9 @@ body {
 .form-container {
   max-width: 400px;
   margin: 0 auto;
-  margin-top: 2rem;
   padding: 20px;
-  border: 1px solid #8ee2fc; /* Light Blue */
   border-radius: 5px;
-  background-color: #ffffff; /* White */
+  background-color: #8ee2fc;/* White */
 }
 
 .form-container button{
@@ -25,6 +23,7 @@ body {
 .form-container h2 {
   text-align: center;
   color: #324863; /* Dark Gray */
+  font-weight: bolder;
 }
 
 .input-group {
@@ -42,7 +41,7 @@ body {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
   box-sizing: border-box;
   background-color: #ffffff; /* White */

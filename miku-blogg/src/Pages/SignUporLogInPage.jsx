@@ -25,12 +25,12 @@ const SignUporLogInPage = () => {
     {!showLoginForm ? (
       <div className='SignUporLogInForm'>
         <LogInForm onLogin={handleLogin}/>
-        <button onClick={handleLoginButtonClick}>Don't have an account? Sign up instead</button>
+        <button className='toggleButton' onClick={handleLoginButtonClick}>Don't have an account? <strong>Sign up</strong> instead</button>
       </div>
     ) : (
       <div className='SignUporLogInForm'>
         <SignUpForm onSignUp={handleSignUp}/>
-        <button onClick={handleLoginButtonClick}>Already have an account? Log in instead</button>
+        <button className='toggleButton' onClick={handleLoginButtonClick}>Already have an account? <strong>Log in</strong> instead</button>
       </div>
     )}
   </div>

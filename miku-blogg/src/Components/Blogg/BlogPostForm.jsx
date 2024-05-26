@@ -9,6 +9,7 @@ const BlogPostForm = ({ onAddPost }) => {
   // State for title and body inputs
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [category, setCategory] = useState('');
   const { currentUser } = useAuth();
   const [profilePicture, setProfilePicture] = useState('');
   const [username, setUsername] = useState('');
@@ -53,6 +54,7 @@ const BlogPostForm = ({ onAddPost }) => {
     const newPost = {
       title,
       body,
+      category,
       user: {
         uid: currentUser.uid,
         username: username,
@@ -65,6 +67,7 @@ const BlogPostForm = ({ onAddPost }) => {
     // Clear title and body inputs after submission
     setTitle('');
     setBody('');
+    setCategory('General');
   };
 
   return (
@@ -96,6 +99,11 @@ const BlogPostForm = ({ onAddPost }) => {
             required
           ></textarea>
         </div>
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="General">General</option>
+            <option value="Technology">Technology</option>
+            <option value="Announcements">Announcements</option>
+      </select>
         <button type="submit">Post!</button>
       </form>
     </div>

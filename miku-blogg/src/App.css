@@ -59,3 +59,26 @@ body {
   color: #324863; /* Dark Gray */
   padding: 20px;
 }
+.signin-form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+.toggleButton{
+  margin: 25px;
+  background-color: transparent;
+  color: #324863;
+}
+
+.toggleButton:hover{
+  text-decoration: underline;
+}
+
+button:hover{
+  background-color: #f48fb1;
+}
+
+a:hover{
+  color: #f48fb1;
+}

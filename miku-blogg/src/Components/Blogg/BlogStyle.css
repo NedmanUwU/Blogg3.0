@@ -69,7 +69,6 @@ body {
 .blog-post h2 {
   font-size: 1.5em;
   margin: 0px;
-  margin-bottom: 30px;
   text-align: center;
   padding: 25px;
   padding-top: 0;
@@ -86,6 +85,10 @@ body {
 }
 
 .post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 15px;
   padding-top: 0px;
   border-radius: 5px;
@@ -93,6 +96,8 @@ body {
 }
 
 .blog-post-form {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1rem;
   background: #8ee2fc; /* Light Blue */
   color: white;
@@ -163,6 +168,7 @@ body {
 
 .blog-post-form button,
 .blog-post-form-edit button {
+  display: flex;
   padding: 12px 25px;
   background-color: #324863;  /* Pink */
   color: #ffffff; /* White */
