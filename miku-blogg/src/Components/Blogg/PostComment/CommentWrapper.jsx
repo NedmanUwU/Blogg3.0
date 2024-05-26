@@ -46,7 +46,6 @@ const CommentWrapper = ({ post }) => {
             comment={comment}
             deleteComment={deleteComment}
             editComment={editComment}
-            isLoggedIn={isLoggedIn}
           />
         )
       )}

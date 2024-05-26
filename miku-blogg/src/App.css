@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree&family=Inclusive+Sans&display=swap');
+
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'figtree';
 }
 
 body {
@@ -8,7 +10,7 @@ body {
 
 .MainContent {
   background-color: #e3f2fd; /* Very Light Blue */
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
   padding: 2rem;
   border-radius: 5px;
@@ -21,15 +23,15 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-
+.MainContent img{
+  width: 400px;
+}
 .Wrapper {
   color: #324863; /* Dark Gray */
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
-  background-color: #ffffff; /* White */
-  border: 1px solid #8ee2fc; /* Light Blue */
   padding: 20px;
   width: 100%;
   max-width: 600px;
@@ -47,13 +49,13 @@ body {
   color: #26ccff; /* Light Blue */
   margin: 0px;
   padding: 5px;
-  padding-bottom: 0px;
+  padding-bottom: 10px;
   text-align: center;
+  border-bottom: solid 1px #26ccff;
 }
 
 .Wrapper p {
   text-align: left;
   color: #324863; /* Dark Gray */
   padding: 20px;
-
 }

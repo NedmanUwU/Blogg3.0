@@ -17,20 +17,18 @@ body {
 }
 
 .blog-header {
-  padding: 10px;
+  padding: 0px;
   margin: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: #ffffff;
   font-weight: bolder;
-  border-radius: 5px;
 }
 
 .blog-post .user-info {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .blog-post .user-info img {
@@ -41,7 +39,6 @@ body {
 }
 
 .blog-post .user-info p {
-  padding: 10px;
   padding-left: 0px;
   color: #324863;  /* Dark Gray */
 }
@@ -71,6 +68,7 @@ body {
 
 .blog-post h2 {
   font-size: 1.5em;
+  margin: 0px;
   margin-bottom: 30px;
   text-align: center;
   padding: 25px;
@@ -88,9 +86,8 @@ body {
 }
 
 .post-content {
-  background-color: #ffffff; /* White */
   padding: 15px;
-  border: 1px solid #8ee2fc; /* Light Blue */
+  padding-top: 0px;
   border-radius: 5px;
   color: #324863; /* Dark Gray */
 }

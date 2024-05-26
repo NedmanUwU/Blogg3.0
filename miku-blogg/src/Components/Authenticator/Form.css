@@ -1,53 +1,79 @@
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-  }
-  
-  .form-container h2 {
-    text-align: center;
-  }
-  
-  .input-group {
-    margin-bottom: 20px;
-    margin-right: 20px;
-  }
-  
-  .input-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+body {
+  background-color: #f3f7f9; /* Very Light Blue */
+  color: #324863;  /* Dark Gray */
+}
 
-  .pfp-select {
-    margin-bottom: 20px;
-  }
-  
-  .pfp-select select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .pfp-select select:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  .pfp-select option {
-    padding: 5px;
-  }
-  
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 20px;
+  border: 1px solid #8ee2fc; /* Light Blue */
+  border-radius: 5px;
+  background-color: #ffffff; /* White */
+}
+
+.form-container button{
+  background-color: #324863;  /* Pink */
+  color: #ffffff;
+}
+
+.form-container button:hover{
+  background-color: #f48fb1;  /* Pink */
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #324863; /* Dark Gray */
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #324863; /* Dark Gray */
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #ffffff; /* White */
+  color: #324863; /* Dark Gray */
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #26ccff; /* Light Blue */
+}
+
+.pfp-select {
+  margin-bottom: 20px;
+}
+
+.pfp-select select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #ffffff; /* White */
+  color: #324863; /* Dark Gray */
+}
+
+.pfp-select select:focus {
+  outline: none;
+  border-color: #26ccff; /* Light Blue */
+}
+
+.pfp-select option {
+  padding: 5px;
+}

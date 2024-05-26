@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { useAuth } from '../Authenticator/Authenticator';
 import PropTypes from 'prop-types';
 import Miku from '../../assets/Miku_Sit.png';
@@ -8,7 +10,32 @@ const BlogPostForm = ({ onAddPost }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const { currentUser } = useAuth();
+  const [profilePicture, setProfilePicture] = useState('');
+  const [username, setUsername] = useState('');
 
+  //fetching the users username and pfp
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (currentUser) {
+        try {
+          const userDoc = doc(db, 'accounts', currentUser.uid);
+          const userSnap = await getDoc(userDoc);
+          if (userSnap.exists()) {
+            const userData = userSnap.data();
+            setUsername(userData.username || '');
+            setProfilePicture(userData.profilePicture || '');
+          } else {
+            console.error('No such document!');
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [currentUser]);
+  
   // Event handler for title input change
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -27,8 +54,9 @@ const BlogPostForm = ({ onAddPost }) => {
       title,
       body,
       user: {
-        username: currentUser.username,
-        profilePicture: currentUser.img,
+        uid: currentUser.uid,
+        username: username,
+        profilePicture: profilePicture,
       },
     };
 
@@ -42,7 +70,7 @@ const BlogPostForm = ({ onAddPost }) => {
   return (
     <div className="blog-post-form">
       <div className='Welcome-message'>
-        <h2>Welcome {currentUser.username}!</h2>
+        <h2>Welcome {username}!</h2>
         <img src={Miku} alt="Miku" />
       </div>
       {/* Form for creating a new blog post, title and bodytext*/}

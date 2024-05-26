@@ -1,30 +1,37 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { createUser } from '../../firebase/authFunctions';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebase/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import './Form.css';
 
 const SignUpForm = ({ onSignUp }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [profilePicture, setProfilePicture] = useState('cat1.jpg'); // Default profile picture
+  const [profilePicture, setProfilePicture] = useState('https://lh3.googleusercontent.com/pw/AP1GczM65ELCwzYNAgC3qrRW5Rog1TRLL4bU_UxmBGV4EZQLkbtvGL38Vw2xvRmJYhFFhyT738jb01XoBoOdR1_7zR2dHH8lbI1ljzlQACy1Zb5Tb8-t7w=w2400'); // Default profile picture
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await createUser(email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Save the username and profile picture to Firestore
-      const db = getFirestore();
-      await setDoc(doc(db, "users", user.uid), {
-        username,
-        email,
-        profilePicture // Save selected profile picture
-      });
+      // Set account doc
+      const account = {
+        userUid: user.uid,
+        username: username,
+        email: user.email,
+        profilePicture: profilePicture,
+      };
+
+      console.log(account);
+
+      console.log(profilePicture);
+      await setDoc(doc(db, 'accounts', user.uid), account);
 
       onSignUp(user);
+      
     } catch (error) {
       console.error('Error signing up:', error.message);
     }
@@ -72,9 +79,9 @@ const SignUpForm = ({ onSignUp }) => {
             onChange={(e) => setProfilePicture(e.target.value)}
             required
           >
-            <option value='../../assets/cat1.jpg'>Coder Cat</option>
-            <option value='../../assets/cat2.jpg'>Sleepy Cat</option>
-            <option value='../../assets/cat3.jpg'>Froggy Cat</option>
+            <option value='https://lh3.googleusercontent.com/pw/AP1GczM65ELCwzYNAgC3qrRW5Rog1TRLL4bU_UxmBGV4EZQLkbtvGL38Vw2xvRmJYhFFhyT738jb01XoBoOdR1_7zR2dHH8lbI1ljzlQACy1Zb5Tb8-t7w=w2400'>Coder Cat</option>
+            <option value='https://lh3.googleusercontent.com/pw/AP1GczOyHAp-Ng2OzQh0rVibsf1_Xh1B08ywEG_F2dfhDRIDmWkE8rt9IJdB3SDrBWvr-D8k36lGltGvSXQHP2i-43gUzukszeveS063kWNG3m4Bo-VEqw=w2400'>Sleepy Cat</option>
+            <option value='https://lh3.googleusercontent.com/pw/AP1GczPPsob1Ez_dYAyQW-xXf6OqddizuhhYLFTCYhOK1p-9mR92-79d-Ud0gxIBLLRm6RUe0tWdBgKt4k6L9QyD0dy78gw8bYD43eE1M5ZRnwOliN0wOQ=s300-p-k'>Froggy Cat</option>
           </select>
         </div>
         <button type="submit">Sign Up</button>

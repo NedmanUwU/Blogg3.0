@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useAuth } from '../Authenticator/Authenticator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '../Authenticator/Authenticator';
 
 const BlogPost = ({ post, deletePost, editPost, children }) => {
   const { currentUser } = useAuth();
@@ -17,7 +17,7 @@ const BlogPost = ({ post, deletePost, editPost, children }) => {
   };
 
   return (
-    //Render a single post
+    // Render a single post
     <div className="blog-post">
       <div className="blog-header">
         {/* User information */}
@@ -26,7 +26,7 @@ const BlogPost = ({ post, deletePost, editPost, children }) => {
           <p>{post.user.username}</p>
         </div>
         {/* Render edit and delete icons if logged in user is the post owner */}
-        {currentUser && post.user.username === currentUser.username && (
+        {currentUser && post.user.uid === currentUser.uid && (
           <div className="Post-Icons">
             <FontAwesomeIcon
               className="edit-icon"
@@ -52,7 +52,7 @@ const BlogPost = ({ post, deletePost, editPost, children }) => {
           <p key={index}>{paragraph}</p>
         ))}
         {/* Conditionally render the "Read More" button depending on post length,
-        as well ass toggle between 'Read more' and 'Read less'*/}
+        as well as toggle between 'Read more' and 'Read less' */}
         {paragraphs.length > 2 && (
           <button onClick={toggleFullContent}>
             {showFullContent ? 'Read Less' : 'Read More'}

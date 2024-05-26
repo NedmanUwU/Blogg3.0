@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useAuth } from '../../Authenticator/Authenticator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import './Comment.css';
 
-const Comment = ({ comment, deleteComment, editComment, isLoggedIn }) => {
+const Comment = ({ comment, deleteComment }) => {
+  const { currentUser } = useAuth();
   if (!comment.user) {
     return null; // Return null if user is not defined
   }
@@ -16,7 +18,7 @@ const Comment = ({ comment, deleteComment, editComment, isLoggedIn }) => {
           <img src={comment.user.profilePicture} alt="User profile" />
           <p>{comment.user.username}</p>
           </div>
-          {isLoggedIn && (
+          {currentUser && comment.user.uid === currentUser.uid && (
           <div className='Comment-Icons'>
               <FontAwesomeIcon className='delete-icon'
                 icon={faTrash}

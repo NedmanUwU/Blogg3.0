@@ -2,8 +2,6 @@
 .CommentWrapper {
     margin-top: 25px;
     padding: 2rem;
-    background-color: #ffffff;
-    border: solid 1px #8ee2fc;
     border-radius: 5px;
   }
 
@@ -15,7 +13,7 @@
           display: flex;
           align-items: center;
           outline: none;
-          background: white;
+          background: rgb(253, 254, 255);
           border: 3px solid #324863;
           border-radius: 20px;
           color: black;
@@ -44,19 +42,18 @@
         }
         
 .Comment{
+  padding:10px;
   margin-top: 25px;
   margin-bottom: 25px;
+  background-color:rgb(253, 254, 255);
+  border-radius: 5px;
 }
       
-.Comment:hover{
-  border: dashed 3px #8ee2fc;
-}
       .Comment-header{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 5px;
       }     
             .Comment .User-info{
               display: flex;
@@ -64,7 +61,6 @@
               align-items: center;
             }
             .Comment-header p{
-              padding: 10px;
               padding-left: 0px;
               font-weight: bold;
               color: #324863;  /* Dark Gray */
@@ -87,7 +83,7 @@
         padding: 0px;
         padding-left: 15px;
         margin: 0px;
-        padding-bottom: 5px;
+        padding-bottom: 15px;
       }
           
       .Comment-btn{

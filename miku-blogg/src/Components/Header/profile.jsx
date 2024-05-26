@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { signOutUser } from '../../firebase/authFunctions';
 import { useAuth } from '../Authenticator/Authenticator';
@@ -9,12 +11,32 @@ import './Profilestyle.css';
 
 const Profile = () => {
   const { currentUser } = useAuth();
-  const handleLoginClick = () => {
-    onLogin(); // Call the onLogin function from props
-  };
+  const [profilePicture, setProfilePicture] = useState('');
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (currentUser) {
+        try {
+          const userDoc = doc(db, 'accounts', currentUser.uid);
+          const userSnap = await getDoc(userDoc);
+          if (userSnap.exists()) {
+            const userData = userSnap.data();
+
+            setProfilePicture(userData.profilePicture || '');
+          } else {
+            console.error('No such document!');
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [currentUser]);
 
     const getDefaultProfilePicture = () => {
-      return currentUser ? currentUser.profilePicture : IconLoggedOut;
+      return currentUser ? profilePicture : IconLoggedOut;
     }; //Changes pfp depending on login status
 
     return (
