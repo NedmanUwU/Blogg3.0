@@ -74,7 +74,7 @@ useEffect(() => {
   const fetchPosts = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, 'blogposts'));
-      const fetchedPosts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const fetchedPosts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data(), isEditing: false }));
       setPosts([...fetchedPosts, ...preMadePosts]);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -96,8 +96,14 @@ const deletePost = async (id) => {
 
 // Function to toggle editing mode for a post
 const editPost = (id) => {
-  setPosts(posts.map((post) => (post.id === id ? { ...post, isEditing: !post.isEditing } : post)));
+  console.log('Editing post with id:', id);
+  setPosts(
+    posts.map((post) =>
+      post.id === id ? { ...post, isEditing: !post.isEditing } : post
+    )
+  );
 };
+
 
 // Function to update a post with new data
 const updatePost = async (updatedPost) => {

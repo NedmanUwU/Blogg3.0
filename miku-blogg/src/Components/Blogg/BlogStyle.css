@@ -98,6 +98,8 @@ body {
 .blog-post-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  justify-items: center;
   margin-bottom: 1rem;
   background: #8ee2fc; /* Light Blue */
   color: white;
@@ -145,7 +147,7 @@ body {
 
 .text-input {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 15px;
   margin-left: 0;
 }
@@ -156,7 +158,6 @@ body {
 .blog-post-form-edit textarea {
   margin: 5px;
   padding: 10px;
-  width: 100%;
   display: flex;
   align-items: center;
   outline: none;
@@ -183,4 +184,45 @@ body {
 .blog-post-form button:hover,
 .blog-post-form-edit button:hover {
   background-color: #f48fb1;
+}
+
+.category-field {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  margin-left: 0;
+}
+
+.category-field label {
+  display: block;
+  font-weight: bold;
+  color: #324863; /* Dark Gray */
+  margin-bottom: 5px;
+}
+
+.category-field input,
+.category-field select {
+  display: flex;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #8ee2fc; /* Light Blue */
+  border-radius: 5px;
+  outline: none;
+  background: #ffffff; /* White */
+  color: #324863; /* Dark Gray */
+}
+
+.category-field button {
+  padding: 10px 20px;
+  background-color: #324863; /* Dark Gray */
+  color: #ffffff; /* White */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.category-field button:hover {
+  background-color: #f48fb1; /* Light Blue */
 }

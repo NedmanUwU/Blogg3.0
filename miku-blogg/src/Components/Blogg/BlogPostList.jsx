@@ -22,7 +22,7 @@ const BlogPostList = ({ posts, onDeletePost, onEditPost, onUpdatePost }) => {
             post={post}
             deletePost={onDeletePost}
             editPost={onEditPost}>
-            <CommentWrapper post={post} />
+            <CommentWrapper postId={post.id} />
           </BlogPost>
         )
       ))}

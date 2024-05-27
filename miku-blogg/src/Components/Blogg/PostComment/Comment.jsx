@@ -46,7 +46,6 @@ Comment.propTypes = {
     }).isRequired,
   }).isRequired,
   deleteComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 };
 

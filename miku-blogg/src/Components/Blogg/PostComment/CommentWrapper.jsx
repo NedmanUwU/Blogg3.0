@@ -1,40 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../Authenticator/Authenticator';
-import EditCommentForm from './EditCommentForm';
+import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
-import { v4 as uuidv4 } from 'uuid';
+import EditCommentForm from './EditCommentForm'; // Ensure you import this
+import PropTypes from 'prop-types'; // Import PropTypes
 import './Comment.css';
 
-const CommentWrapper = ({ post }) => {
-  const [comments, setComments] = useState(post.comments || []);
+const CommentWrapper = ({ postId }) => {
+  const [comments, setComments] = useState([]);
   const { currentUser } = useAuth();
 
-  const addComment = (comment) => {
-    setComments([...comments, { id: uuidv4(), ...comment, isEditing: false }]);
+  // Guard clause to prevent errors if postId is undefined
+  if (!postId) {
+    console.error('postId is undefined');
+    return null;
+  }
+
+  const commentsCollectionRef = collection(db, 'blogposts', postId, 'comments');
+
+  useEffect(() => {
+    // Function to fetch comments from Firestore
+    const fetchComments = async () => {
+      try {
+        // Query the "comments" subcollection for the specified post ID
+        const querySnapshot = await getDocs(commentsCollectionRef);
+        const fetchedComments = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setComments(fetchedComments);
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    };
+
+    fetchComments();
+  }, [postId, commentsCollectionRef]);
+
+  const addComment = async (newComment) => {
+    try {
+      const docRef = await addDoc(commentsCollectionRef, newComment);
+      setComments([...comments, { id: docRef.id, ...newComment }]);
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    }
   };
 
-  const deleteComment = (id) => {
-    setComments(comments.filter((comment) => comment.id !== id));
-  };
-
-  const editComment = (id) => {
-    setComments(comments.map((comment) =>
-      comment.id === id ? { ...comment, isEditing: !comment.isEditing } : comment
-    ));
-  };
-
-  const editKudos = (kudos, id) => {
-    setComments(comments.map((comment) =>
-      comment.id === id ? { ...comment, kudos, isEditing: !comment.isEditing } : comment
-    ));
+  const deleteComment = async (id) => {
+    try {
+      await deleteDoc(doc(commentsCollectionRef, id));
+      setComments(comments.filter((comment) => comment.id !== id));
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
   };
 
   return (
     <div className='CommentWrapper'>
       {currentUser && (
         <div className='addingNewComment'>
-          <CommentForm addComment={addComment} />
+          <CommentForm postId={postId} addComment={addComment} />
         </div>
       )}
       {comments.map((comment) =>
@@ -45,12 +69,16 @@ const CommentWrapper = ({ post }) => {
             key={comment.id}
             comment={comment}
             deleteComment={deleteComment}
-            editComment={editComment}
           />
         )
       )}
     </div>
   );
+};
+
+// PropTypes validation
+CommentWrapper.propTypes = {
+  postId: PropTypes.string.isRequired
 };
 
 export default CommentWrapper;

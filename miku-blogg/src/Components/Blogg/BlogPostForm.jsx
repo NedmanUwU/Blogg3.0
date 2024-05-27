@@ -54,6 +54,7 @@ const BlogPostForm = ({ onAddPost }) => {
 
     try {
       const docRef = await addDoc(collection(db, 'blogposts'), newPost);
+      const commentsCollectionRef = collection(doc(db, 'blogposts', docRef.id), 'comments');
       onAddPost({ id: docRef.id, ...newPost });
       setTitle('');
       setBody('');
@@ -91,11 +92,14 @@ const BlogPostForm = ({ onAddPost }) => {
             required
           ></textarea>
         </div>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="General">General</option>
-          <option value="Technology">Technology</option>
-          <option value="Announcements">Announcements</option>
-        </select>
+        <div className="category-field">
+          <label htmlFor="category">Category:</label>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="General">General</option>
+            <option value="Technology">Technology</option>
+            <option value="Announcements">Announcements</option>
+          </select>
+        </div>
         <button type="submit">Post!</button>
       </form>
     </div>
