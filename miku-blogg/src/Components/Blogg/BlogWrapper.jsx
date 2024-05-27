@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../../firebase/firebase';
+import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../Authenticator/Authenticator';
 import './BlogStyle.css';
@@ -10,7 +12,9 @@ import Cinnamorollpfp from '../../assets/cinnamorollpfp.jpg';
 const BlogWrapper = () => {
   // State for managing blog posts
   const { currentUser } = useAuth();
-  const [posts, setPosts] = useState([
+  // State for managing the selected category filter
+  const [filter, setFilter] = useState('All');
+  const preMadePosts = [
     // Existing sample posts
     {
       id: uuidv4(),
@@ -62,44 +66,48 @@ const BlogWrapper = () => {
       body: 'Hello everyone! I’m Hatsune Miku!\n\nWho? First things first, I’m not your typical pop star—I’m a Vocaloid! Developed by Crypton Future Media, I made my debut in 2007 as a virtual singing synthesizer. My voice is based on samples from Japanese voice actress Saki Fujita, and I sing using Yamaha’s Vocaloid technology.\n\nWhat makes me unique is that my character isn’t just about the music; I have a whole persona and story. I’ve performed in concerts worldwide, collaborated with various artists, and even starred in video games and merchandise. My fans, known as "Piapro," are incredibly creative and have contributed to my growth and success.\n\nI want to use this blog to share more about my world, my projects, and my thoughts. I hope to give you all a glimpse into the life of a digital diva and the amazing community that surrounds me.\n\nUntil next time, stay tuned for more music, more fun, and more virtual awesomeness. Thanks for being a part of my world!\n\nYours virtually,\nHatsune Miku',
       category: 'General'
     },
-  ]);
+  ];
+  const [posts, setPosts] = useState(preMadePosts);
 
-  // State for managing the selected category filter
-  const [filter, setFilter] = useState('All');
+// Fetch posts from Firestore
+useEffect(() => {
+  const fetchPosts = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, 'blogposts'));
+      const fetchedPosts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setPosts([...fetchedPosts, ...preMadePosts]);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
 
-  // Function to delete a post
-  const deletePost = (id) => {
-    console.log('Deleting post with id:', id);
+  fetchPosts();
+}, []);
+
+// Function to delete a post
+const deletePost = async (id) => {
+  try {
+    await deleteDoc(doc(db, 'blogposts', id));
     setPosts(posts.filter((post) => post.id !== id));
-  };
+  } catch (error) {
+    console.error('Error deleting post:', error);
+  }
+};
 
-  // Function to toggle editing mode for a post
-  const editPost = (id) => {
-    console.log('Editing post with id:', id);
-    setPosts(
-      posts.map((post) =>
-        post.id === id ? { ...post, isEditing: !post.isEditing } : post
-      )
-    );
-  };
+// Function to toggle editing mode for a post
+const editPost = (id) => {
+  setPosts(posts.map((post) => (post.id === id ? { ...post, isEditing: !post.isEditing } : post)));
+};
 
-  // Function to update a post with new data, gathered from the edit form
-  const updatePost = (updatedPost) => {
-    console.log('Updating post:', updatedPost);
-    setPosts(
-      posts.map((post) =>
-        post.id === updatedPost.id ? { ...updatedPost, isEditing: false } : post
-      )
-    );
-  };
-
-  // Function to add a new post
-  const handleAddPost = (newPost) => {
-    console.log('Adding new post:', newPost);
-    newPost.id = uuidv4(); // Generate a unique ID for the new post
-    newPost.isEditing = false; // Ensure the new post is not in editing mode
-    setPosts([newPost, ...posts]);
-  };
+// Function to update a post with new data
+const updatePost = async (updatedPost) => {
+  try {
+    await updateDoc(doc(db, 'blogposts', updatedPost.id), updatedPost);
+    setPosts(posts.map((post) => (post.id === updatedPost.id ? { ...updatedPost, isEditing: false } : post)));
+  } catch (error) {
+    console.error('Error updating post:', error);
+  }
+};
 
   // Filter posts based on the selected category
   const filteredPosts =
@@ -109,9 +117,9 @@ const BlogWrapper = () => {
     <div className="BlogWrapper">
       {/* Render BlogPostForm if user is logged in, else display message */}
       {currentUser ? (
-        <BlogPostForm onAddPost={handleAddPost} />
+        <BlogPostForm onAddPost={(newPost) => setPosts([newPost, ...posts])} />
       ) : (
-        <h2>Please log in to write your own posts</h2>
+        <h2>Please log in to write your own posts or add comments to existing ones </h2>
       )}
       <div className="filter-buttons">
         <button onClick={() => setFilter('All')}>All</button>
