@@ -1,28 +1,24 @@
 import React from 'react'
+import Miku from '../../assets/Miku_Stand.png'
 
 const MainContent = () => {
   return (
-    <div className='Wrapper'>
-        <h2>Step 1: Creating New Tasks </h2>
+    <div className='MainContent'>
+      <div className='Wrapper'>
+        <h1>Hi there! <br /></h1>
+        <h2>Welcome to Miku and Cinnamorolls joint blogg!</h2>
         <p>
-        To start using the <b>Todo app</b>, simply type your task directly into the input on a single
-        line. <br />Then hit the <b>Enter key</b> on your keyboard or click the <b>"Add Task"</b> button. 
+          We're so happy to have you here! You are very welcome to blogg here
+          right besides us. Let's share our experiences and get to know each other! 
+          Whether it's about music, art, or everyday adventures, we can't wait to see what 
+          you'll share! 💙<br /><br />Why wait? To start all you need to do is create a 
+          profile, afterwards it's straight ahead 
+          blogging!
         </p>
-
-        <h2>Step 2: Marking Tasks as Done </h2>
-        <p>
-        Once a task is added to your list, you can mark it as <b>done</b> by <b>clicking</b> directly on 
-        it. <br />This feature provides a quick and 
-        intuitive way to keep track of your progress.
-        </p>
-
-        <h2>Step 3: Deleting Tasks</h2>
-        <p>
-        To remove a task from your list, look for a <b>can-icon</b> located next to the task and 
-        click on it. This action will <b>remove</b> the task <b>permanently</b> 
-        from your list, helping you maintain a clean and <br />organized task list.
-        </p>
+      </div>
+      <img src={Miku} alt="" />
     </div>
+
   )
 }
 

@@ -28,11 +28,14 @@
     color:#324863;
     font-weight: bold;
     text-align: center;
-    padding: 12px;
     text-decoration: none;
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
+  }
+
+  .nav-link{
+    padding: 12px;
   }
   
   
@@ -45,8 +48,6 @@
     color: white;
     cursor: pointer;
   }
-  
-  
   
   
   .header a.logo {
